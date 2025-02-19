@@ -1,19 +1,10 @@
 #!/bin/sh
+# -*- coding: utf-8 -*-
 
 set -e
 
 current=$(pwd)
-uboot=$current/uboot
-kernel=$current/kernel
+uboot=$current/qemu-rv32/uboot
+kernel=$current/qemu-rv32/kernel
 
-if [ -d "$uboot" ];then
-    echo " remove uboot files "
-    rm -r $uboot
-fi
-
-if [ -d "$kernel" ];then
-    echo " remove kernel files "
-    rm -r $kernel
-fi
-
-echo " clean all "
+find $current -type f \( -name "u-boot*" -or -name "*Image" \) -exec rm -f {} + || true
